@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+</head>
+<body>
+
+   <!-- 🔷 Header / Navbar -->
+<header>
+    <nav>
+        <table width="100%">
+            <tr>
+                <!-- Logo -->
+                <td>
+                    <h1>MyShop</h1>
+                </td>
+
+                <!-- Menu -->
+                <td align="right">
+                    <a href="#">Home</a> |
+                    <a href="#">Products</a> |
+                    <a href="#">Cart</a> |
+                    <a href="#">Contact</a>
+                </td>
+            </tr>
+        </table>
+    </nav>
+</header>
+    <!-- 🔷 Main Content -->
+    <main>
+        <!-- 🟢 Product Section -->
+        <section>
+            <h2>Our Products</h2>
+
+            <div>
+
+                <!-- Watch -->
+                <div>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Watch" width="250">
+                    <h3>Smart Watch</h3>
+                    <p>₹1499</p>
+                    <button>Add to Cart</button>
+                </div><br>
+
+                <!-- Earbuds -->
+                <div>
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df" alt="Earbuds" width="250">
+                    <h3>Wireless Earbuds</h3>
+                    <p>₹999</p>
+                    <button>Add to Cart</button>
+                </div><br>
+
+                <!-- Shoes -->
+                <div>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Shoes" width="250">
+                    <h3>Sports Shoes</h3>
+                    <p>₹1999</p>
+                    <button>Add to Cart</button>
+                </div><br>
+    </main>
+
+    <!-- 🔻 Footer -->
+    <footer>
+        <p>© 2026 MyShop. All rights reserved.</p>
+        <p>Contact: p4522950993@gmail.com</p>
+    </footer>
+
+</body>
+</html>
