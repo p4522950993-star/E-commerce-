@@ -1,71 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyShop UI</title>
+
+<style>
+:root {
+    --primary: #ff4d4d;
+    --dark: #1a1a1a;
+    --light: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: var(--dark);
+    color: var(--light);
+}
+
+.navbar h2 {
+    color: var(--primary);
+}
+
+.nav-links a {
+    color: var(--light);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #ff4d4d, #ff884d);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero button {
+    margin-top: 20px;
+}
+
+.btn {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: black;
+}
+
+.container {
+    padding: 40px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    transition: 0.3s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.price {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--dark);
+    color: white;
+}
+</style>
+
 </head>
 <body>
 
-   <!-- 🔷 Header / Navbar -->
-<header>
-    <nav>
-        <table width="100%">
-            <tr>
-                <!-- Logo -->
-                <td>
-                    <h1>MyShop</h1>
-                </td>
+<div class="navbar">
+    <h2>MyShop</h2>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Cart</a>
+        <a href="#">Contact</a>
+    </div>
+</div>
 
-                <!-- Menu -->
-                <td align="right">
-                    <a href="#">Home</a> |
-                    <a href="#">Products</a> |
-                    <a href="#">Cart</a> |
-                    <a href="#">Contact</a>
-                </td>
-            </tr>
-        </table>
-    </nav>
-</header>
-    <!-- 🔷 Main Content -->
-    <main>
-        <!-- 🟢 Product Section -->
-        <section>
-            <h2>Our Products</h2>
+<div class="hero">
+    <h1>🔥 Mega Sale</h1>
+    <button class="btn">Shop Now</button>
+</div>
 
-            <div>
+<div class="container">
+    <h2>Featured Products</h2>
 
-                <!-- Watch -->
-                <div>
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Watch" width="250">
-                    <h3>Smart Watch</h3>
-                    <p>₹1499</p>
-                    <button>Add to Cart</button>
-                </div><br>
+    <div class="grid">
 
-                <!-- Earbuds -->
-                <div>
-                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df" alt="Earbuds" width="250">
-                    <h3>Wireless Earbuds</h3>
-                    <p>₹999</p>
-                    <button>Add to Cart</button>
-                </div><br>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
+            <h3>Smart Watch</h3>
+            <p class="price">₹1499</p>
+            <button class="btn">Add to Cart</button>
+        </div>
 
-                <!-- Shoes -->
-                <div>
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Shoes" width="250">
-                    <h3>Sports Shoes</h3>
-                    <p>₹1999</p>
-                    <button>Add to Cart</button>
-                </div><br>
-    </main>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df">
+            <h3>Earbuds</h3>
+            <p class="price">₹999</p>
+            <button class="btn">Add to Cart</button>
+        </div>
 
-    <!-- 🔻 Footer -->
-    <footer>
-        <p>© 2026 MyShop. All rights reserved.</p>
-        <p>Contact: p4522950993@gmail.com</p>
-    </footer>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
+            <h3>Shoes</h3>
+            <p class="price">₹1999</p>
+            <button class="btn">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=400&q=80" alt="Glasses" width="250">
+            <h3>Stylish Glasses</h3>
+            <p>₹899</p>
+            <button class="btn">Add to Cart</button>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>Contact: p4522950993@gmail.com</p>
+</footer>
 
 </body>
 </html>
