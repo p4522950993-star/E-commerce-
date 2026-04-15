@@ -3,38 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyShop UI</title>
+<title>MyShop Pro</title>
 
 <style>
 :root {
     --primary: #ff4d4d;
-    --dark: #1a1a1a;
-    --light: #ffffff;
+    --dark: #111;
+    --light: #fff;
 }
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background: #f3f3f3;
 }
 
+/* 🔷 Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
+    padding: 15px 50px;
     background: var(--dark);
-    color: var(--light);
+    color: white;
 }
 
-.navbar h2 {
+.logo {
     color: var(--primary);
 }
 
 .nav-links a {
-    color: var(--light);
+    color: white;
+    margin-left: 25px;
     text-decoration: none;
-    margin-left: 20px;
     transition: 0.3s;
 }
 
@@ -42,62 +43,77 @@ body {
     color: var(--primary);
 }
 
+/* 🟣 Hero */
 .hero {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #ff4d4d, #ff884d);
     color: white;
+    background: linear-gradient(135deg, #ff4d4d, #ff884d);
 }
 
 .hero h1 {
-    font-size: 40px;
-}
-
-.hero button {
-    margin-top: 20px;
+    font-size: 50px;
 }
 
 .btn {
-    background: var(--primary);
+    background: white;
+    color: var(--primary);
+    padding: 12px 25px;
     border: none;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
+    margin-top: 15px;
     transition: 0.3s;
 }
 
 .btn:hover {
     background: black;
+    color: white;
 }
 
-.container {
-    padding: 40px;
+/* 🟢 Section Title */
+.section-title {
     text-align: center;
+    margin: 40px 0 10px;
+}
+
+/* 🟢 Products */
+.container {
+    padding: 20px 50px 50px;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 25px;
 }
 
+/* 🔷 Card */
 .card {
     background: white;
-    padding: 15px;
     border-radius: 15px;
+    overflow: hidden;
     transition: 0.3s;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
 }
 
 .card img {
     width: 100%;
-    border-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+    text-align: center;
 }
 
 .price {
@@ -105,11 +121,19 @@ body {
     font-weight: bold;
 }
 
+/* ⭐ Rating */
+.rating {
+    color: gold;
+    margin: 5px 0;
+}
+
+/* 🔻 Footer */
 footer {
-    text-align: center;
-    padding: 20px;
     background: var(--dark);
     color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
 }
 </style>
 
@@ -117,7 +141,7 @@ footer {
 <body>
 
 <div class="navbar">
-    <h2>MyShop</h2>
+    <h2 class="logo">MyShop</h2>
     <div class="nav-links">
         <a href="#">Home</a>
         <a href="#">Products</a>
@@ -127,48 +151,83 @@ footer {
 </div>
 
 <div class="hero">
-    <h1>🔥 Mega Sale</h1>
-    <button class="btn">Shop Now</button>
+    <div>
+        <h1>🔥 Big Billion Sale</h1>
+        <p>Top deals on fashion & electronics</p>
+        <button class="btn">Shop Now</button>
+    </div>
 </div>
 
-<div class="container">
-    <h2>Featured Products</h2>
+<h2 class="section-title">Featured Products</h2>
 
+<div class="container">
     <div class="grid">
 
         <div class="card">
             <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
-            <h3>Smart Watch</h3>
-            <p class="price">₹1499</p>
-            <button class="btn">Add to Cart</button>
+            <div class="card-body">
+                <h3>Smart Watch</h3>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <p class="price">₹1499</p>
+                <button class="btn">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df">
-            <h3>Earbuds</h3>
-            <p class="price">₹999</p>
-            <button class="btn">Add to Cart</button>
+            <div class="card-body">
+                <h3>Earbuds</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <p class="price">₹999</p>
+                <button class="btn">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
             <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-            <h3>Shoes</h3>
-            <p class="price">₹1999</p>
-            <button class="btn">Add to Cart</button>
+            <div class="card-body">
+                <h3>Shoes</h3>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <p class="price">₹1999</p>
+                <button class="btn">Add to Cart</button>
+            </div>
         </div>
 
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=400&q=80" alt="Glasses" width="250">
-            <h3>Stylish Glasses</h3>
-            <p>₹899</p>
-            <button class="btn">Add to Cart</button>
+            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083">
+            <div class="card-body">
+                <h3>Stylish Glasses</h3>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <p class="price">₹899</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+            <div class="card-body">
+                <h3>Wireless Earphones</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <p class="price">₹1199</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1526178613658-3f1622045557">
+            <div class="card-body">
+                <h3>Sunglasses</h3>
+                <div class="rating">⭐⭐⭐⭐☆</div>
+                <p class="price">₹799</p>
+                <button class="btn">Add to Cart</button>
+            </div>
         </div>
 
     </div>
 </div>
 
 <footer>
-    <p>Contact: p4522950993@gmail.com</p>
+    <p>© 2026 MyShop | Contact: p4522950993@gmail.com</p>
 </footer>
 
 </body>
