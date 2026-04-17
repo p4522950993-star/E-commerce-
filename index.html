@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyShop Pro</title>
+<title>MyShop Ultimate</title>
 
 <style>
 :root {
@@ -38,17 +38,8 @@ body {
     color: white;
 }
 
-.btn {
-    background: var(--primary);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
 .container {
-    padding: 50px;
+    padding: 40px;
 }
 
 .grid {
@@ -110,6 +101,25 @@ body {
     margin: 5px;
 }
 
+.btn {
+    background: var(--primary);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#controls {
+    text-align: center;
+    padding: 20px;
+}
+
+#controls input, #controls select {
+    padding: 10px;
+    margin: 5px;
+}
+
 #cartSection {
     background: white;
     margin: 20px;
@@ -133,8 +143,8 @@ footer {
     padding: 20px;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="navbar">
@@ -142,18 +152,29 @@ footer {
     <div class="nav-links">
         <a href="#">Home</a>
         <a href="#">Products</a>
-        <a href="#">Cart</a>
+        <a href="#cartSection" id="cartLink">Cart (0)</a>
     </div>
 </div>
 
 <div class="hero">
     <h1>🔥 Mega Sale</h1>
-    <p>Best deals available</p>
+</div>
+
+<div id="controls">
+    <input type="text" id="search" placeholder="Search product...">
+    <select id="filter">
+        <option value="all">All</option>
+        <option value="available">Available</option>
+        <option value="out">Out of Stock</option>
+    </select>
+    <select id="sort">
+        <option value="default">Sort</option>
+        <option value="low">Low → High</option>
+        <option value="high">High → Low</option>
+    </select>
 </div>
 
 <div class="container">
-    <h2>Products</h2>
-
     <div class="grid">
 
         <div class="card">
@@ -214,6 +235,7 @@ footer {
     <h2>🛒 Cart</h2>
     <div id="cartItems"></div>
     <h3 id="totalPrice">Total: ₹0</h3>
+    <button class="btn" onclick="clearCart()">Clear Cart</button>
 </div>
 
 <footer>
@@ -225,6 +247,41 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const cartItemsDiv = document.getElementById("cartItems");
 const totalPriceDiv = document.getElementById("totalPrice");
+const cartLink = document.getElementById("cartLink");
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function updateCart() {
+    cartItemsDiv.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        cartItemsDiv.innerHTML += `
+            <p>${item.name} (x${item.qty}) - ₹${itemTotal}
+            <button class="remove-btn" onclick="removeItem(${index})">X</button></p>
+        `;
+    });
+
+    totalPriceDiv.textContent = "Total: ₹" + total;
+    cartLink.textContent = "Cart (" + cart.length + ")";
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCart();
+}
+
+function clearCart() {
+    cart = [];
+    saveCart();
+    updateCart();
+}
 
 document.querySelectorAll(".card").forEach(card => {
 
@@ -250,7 +307,7 @@ document.querySelectorAll(".card").forEach(card => {
     if (btn && btn.textContent !== "Out of Stock") {
         btn.onclick = () => {
             cart.push({name, price, qty});
-            localStorage.setItem("cart", JSON.stringify(cart));
+            saveCart();
             updateCart();
         };
     }
@@ -264,29 +321,47 @@ document.querySelectorAll(".card").forEach(card => {
 
 });
 
-function updateCart() {
-    cartItemsDiv.innerHTML = "";
-    let total = 0;
+const searchInput = document.getElementById("search");
+const filterSelect = document.getElementById("filter");
+const sortSelect = document.getElementById("sort");
+const cards = document.querySelectorAll(".card");
 
-    cart.forEach((item, index) => {
-        const itemTotal = item.price * item.qty;
-        total += itemTotal;
+searchInput.oninput = filterProducts;
+filterSelect.onchange = filterProducts;
+sortSelect.onchange = sortProducts;
 
-        cartItemsDiv.innerHTML += `
-            <p>
-                ${item.name} (x${item.qty}) - ₹${itemTotal}
-                <button class="remove-btn" onclick="removeItem(${index})">X</button>
-            </p>
-        `;
+function filterProducts() {
+    const search = searchInput.value.toLowerCase();
+    const filter = filterSelect.value;
+
+    cards.forEach(card => {
+        const name = card.querySelector("h3").textContent.toLowerCase();
+        const isOut = card.querySelector(".out");
+
+        let show = true;
+
+        if (!name.includes(search)) show = false;
+        if (filter === "available" && isOut) show = false;
+        if (filter === "out" && !isOut) show = false;
+
+        card.style.display = show ? "block" : "none";
     });
-
-    totalPriceDiv.textContent = "Total: ₹" + total;
 }
 
-function removeItem(index) {
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCart();
+function sortProducts() {
+    const grid = document.querySelector(".grid");
+    const cardsArray = Array.from(cards);
+
+    cardsArray.sort((a, b) => {
+        const priceA = parseInt(a.querySelector(".price")?.textContent.replace("₹","")) || 0;
+        const priceB = parseInt(b.querySelector(".price")?.textContent.replace("₹","")) || 0;
+
+        if (sortSelect.value === "low") return priceA - priceB;
+        if (sortSelect.value === "high") return priceB - priceA;
+        return 0;
+    });
+
+    cardsArray.forEach(card => grid.appendChild(card));
 }
 
 updateCart();
